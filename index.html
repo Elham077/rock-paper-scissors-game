@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header -->
+        <header class="game-header">
+            <div class="game-title">
+                <h1>
+                    <span class="game-title-main">ROCK</span>
+                    <span class="game-title-main">PAPER</span>
+                    <span class="game-title-main">SCISSORS</span>
+                </h1>
+                <div class="game-subtitle">Classic Game Challenge</div>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main class="game-main">
+            <!-- Score Board -->
+            <div class="score-board">
+                <div class="score-info" id="scoreInfo">
+                    <i class="fas fa-crosshairs"></i>
+                    <span>Choose Your Move</span>
+                </div>
+                <div class="score-message" id="scoreMessage">
+                    First to score 5 points wins the game
+                </div>
+                
+                <div class="score-display">
+                    <div class="player-score">
+                        <div class="score-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="score-details">
+                            <div class="score-label">PLAYER</div>
+                            <div class="score-value" id="playerScore">0</div>
+                        </div>
+                        <div class="choice-display" id="playerSign">
+                            <i class="fas fa-question"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="vs-separator">
+                        <span>VS</span>
+                    </div>
+                    
+                    <div class="computer-score">
+                        <div class="choice-display" id="computerSign">
+                            <i class="fas fa-question"></i>
+                        </div>
+                        <div class="score-details">
+                            <div class="score-label">COMPUTER</div>
+                            <div class="score-value" id="computerScore">0</div>
+                        </div>
+                        <div class="score-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Controls -->
+            <div class="game-controls">
+                <div class="controls-title">Select Your Move</div>
+                <div class="move-buttons">
+                    <button class="move-btn rock-btn" id="rockBtn" data-move="ROCK">
+                        <div class="move-icon">
+                            <i class="fas fa-hand-rock"></i>
+                        </div>
+                        <div class="move-label">ROCK</div>
+                        <div class="move-effect"></div>
+                    </button>
+                    
+                    <button class="move-btn paper-btn" id="paperBtn" data-move="PAPER">
+                        <div class="move-icon">
+                            <i class="fas fa-hand-paper"></i>
+                        </div>
+                        <div class="move-label">PAPER</div>
+                        <div class="move-effect"></div>
+                    </button>
+                    
+                    <button class="move-btn scissors-btn" id="scissorsBtn" data-move="SCISSORS">
+                        <div class="move-icon">
+                            <i class="fas fa-hand-scissors"></i>
+                        </div>
+                        <div class="move-label">SCISSORS</div>
+                        <div class="move-effect"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Stats -->
+            <div class="game-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalRounds">0</div>
+                        <div class="stat-label">Total Rounds</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="tiesCount">0</div>
+                        <div class="stat-label">Ties</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="winStreak">0</div>
+                        <div class="stat-label">Win Streak</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="game-footer">
+            <div class="footer-content">
+                <p class="copyright">
+                    <i class="far fa-copyright"></i>
+                    <span id="currentYear"></span> 
+                    <span class="dev-name">Mohammad Elham Kohistani</span>
+                </p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-redo"></i>
+                        <span>Reset Game</span>
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>How to Play</span>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- End Game Modal -->
+    <div class="modal-overlay" id="overlay"></div>
+    <div class="endgame-modal" id="endgameModal">
+        <div class="modal-content">
+            <div class="modal-icon" id="modalIcon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h2 class="modal-title" id="endgameMsg">Game Over!</h2>
+            <p class="modal-subtitle" id="finalScore">Final Score: 0 - 0</p>
+            <p class="modal-message" id="gameSummary">Would you like to play again?</p>
+            <div class="modal-actions">
+                <button class="modal-btn restart-btn" id="restartBtn">
+                    <i class="fas fa-redo"></i>
+                    Play Again
+                </button>
+                <button class="modal-btn close-btn" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
