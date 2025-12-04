@@ -98,4 +98,4 @@ Play Again or Close
 - Strategy beats randomness over time
 - Have fun and experiment with different approaches!
 
-Good luck, and may the best win! 🚀
+Good luck, and may the best win :)! 🚀
